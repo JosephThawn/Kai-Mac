@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import reportWebVitals from './reportWebVitals';// import * as serviceWorker from './serviceWorker';  
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'typeface-lobster';
+import 'typeface-open-sans';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
+   <React.StrictMode>
+    <App />,
   </React.StrictMode>,
   document.getElementById('root')
 );
