@@ -8,6 +8,8 @@ import Home from './HomeComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import About from './AboutComponent';
 import { connect } from 'react-redux';
+// import { addComment } from '../redux/Actionreators';
+ 
 
 
 
@@ -32,8 +34,10 @@ class Main extends Component {
         };
 
         const CampsiteWithId = ({match}) => {
+        
+            console.log(match)
             return (
-                <CampsiteInfo campsite={this.props.campsites.filter(campsite => campsite.id === +match.params.campsiteId)[0]} 
+                <CampsiteInfo campsite={this.props.campsites.filter(campsite => campsite.id == match.params.campsiteId)[0]} 
                   comments={this.props.comments.filter(comment => comment.campsiteId === +match.params.campsiteId)} />
             );
         };
@@ -44,7 +48,13 @@ class Main extends Component {
                 <Switch>
                     <Route path='/home' component={HomePage} />
                     <Route exact path='/directory' render={() => <Directory campsites={this.props.campsites} />} />
-                    <Route path='/directory/:campsiteId' component={CampsiteWithId} />
+                    <Route path='/directory/:campsiteId' component={(route) => {
+                        // console.log({route})
+                        // const { params } = route
+                        console.log({route})
+                        route.history.goBack();
+                        return CampsiteWithId(route)
+                    }} />
                     <Route exact path='/contactus' component={Contact} />
                     <Route exact path='/aboutus' render={() => <About partners={this.props.partners} /> } />
                     <Redirect to='/home' />

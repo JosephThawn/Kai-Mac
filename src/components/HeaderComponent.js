@@ -11,7 +11,7 @@ class Header extends Component {
 
         this.state = {
           isNavOpen: false,
-          isModalOpen: false
+          isModalOpen: false,
         };
         this.toggleNav = this.toggleNav.bind(this);
         this.toggleModal = this.toggleModal.bind(this);
@@ -48,12 +48,16 @@ class Header extends Component {
                                 <h2>a better way to camp</h2>
                             </div>
                         </div>
+                        
                     </div>
+                    
                 </Jumbotron>
 
                 <Navbar dark sticky="top" expand="md">
                     <div className="container">
-                        <NavbarBrand className="mr-auto" href="/"><img src="/assets/images/logo.png" height="30" width="30" alt="NuCamp Logo" /></NavbarBrand>
+                        <NavbarBrand className="mr-auto" href="/"><img src="/assets/images/logo.png"
+                            height="30" width="30" alt="NuCamp Logo" />
+                        </NavbarBrand>
                         <NavbarToggler onClick={this.toggleNav} />
                         <Collapse isOpen={this.state.isNavOpen} navbar>
                             <Nav navbar>
@@ -69,7 +73,7 @@ class Header extends Component {
                                 </NavItem>
                                 <NavItem>
                                     <NavLink className="nav-link" to="/aboutus">
-                                        <i className="fa fa-info fa-lg" /> About
+                                        <i className="fa fa-info fa-lg" /> About 
                                     </NavLink>
                                 </NavItem>
                                 <NavItem>
@@ -80,14 +84,15 @@ class Header extends Component {
                             </Nav>
                             <span className="navbar-text ml-auto">
                                 <Button outline onClick={this.toggleModal}>
-                                    <i className="fa fa-sign-in fa-lg"/> Login                             
+                                    <i className="fa fa-sign-in fa-lg"/> Login                            
                                 </Button>
                             </span>
                         </Collapse>
                     </div>
                 </Navbar>
                 <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
-                    <ModalHeader toggle={this.toggleModal}>Login</ModalHeader>
+                    <ModalHeader toggle={this.toggleModal}>
+                        Login</ModalHeader>                  
                     <ModalBody>
                     <Form onSubmit={this.handleLogin}>
                             <FormGroup>
