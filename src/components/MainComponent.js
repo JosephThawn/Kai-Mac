@@ -1,68 +1,118 @@
-import React, { Component } from 'react';
-import Directory from './DirectoryComponent';
-import CampsiteInfo from './CampsiteInfoComponent';
-import Header from './HeaderComponent';
-import Footer from './FooterComponent';
-import Contact from './ContactComponent';
-import Home from './HomeComponent';
-import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
-import About from './AboutComponent';
-import { connect } from 'react-redux';
-// import { addComment } from '../redux/Actionreators';
- 
+import React, { Component } from "react";
+import Directory from "./DirectoryComponent";
+import CampsiteInfo from "./CampsiteInfoComponent";
+import Header from "./HeaderComponent";
+import Footer from "./FooterComponent";
+import Contact from "./ContactComponent";
+import Home from "./HomeComponent";
+import { Switch, Route, Redirect, withRouter } from "react-router-dom";
+import About from "./AboutComponent";
+import { connect } from "react-redux";
+import { addComment, fetchCampsites } from "../redux/ActionCreators";
 
-
-
-const mapStateToProps = state => {
-    return {
-        campsites: state.campsites,
-        comments: state.comments,
-        partners: state.partners,
-        promotions: state.promotions
-    };
+const mapStateToProps = (state) => {
+  return {
+    campsites: state.campsites,
+    comments: state.comments,
+    partners: state.partners,
+    promotions: state.promotions,
+  };
 };
+
+const mapDispatchToProps = {
+  addComment: (campsiteId, rating, author, text) =>
+    addComment(campsiteId, rating, author, text),
+  fetchCampsites: fetchCampsites,
+};
+
 class Main extends Component {
-    render() {
-        const HomePage = () => {
-            return (
-                <Home
-                    campsite={this.props.campsites.filter(campsite => campsite.featured)[0]}
-                    promotion={this.props.promotions.filter(promotion => promotion.featured)[0]}
-                    partner={this.props.partners.filter(partner => partner.featured)[0]}
-                />
-            );
-        };
+  componentDidMount() {
+    this.props.fetchCampsites();
+    console.log("componentDidMount");
+  }
 
-        const CampsiteWithId = ({match}) => {
-        
-            console.log(match)
-            return (
-                <CampsiteInfo campsite={this.props.campsites.filter(campsite => campsite.id == match.params.campsiteId)[0]} 
-                  comments={this.props.comments.filter(comment => comment.campsiteId === +match.params.campsiteId)} />
-            );
-        };
+  componentDidUpdate() {
+    console.log("componentDidUpdate");
+  }
 
-        return (
-            <div>
-                <Header />
-                <Switch>
-                    <Route path='/home' component={HomePage} />
-                    <Route exact path='/directory' render={() => <Directory campsites={this.props.campsites} />} />
-                    <Route path='/directory/:campsiteId' component={(route) => {
-                        // console.log({route})
-                        // const { params } = route
-                        console.log({route})
-                        route.history.goBack();
-                        return CampsiteWithId(route)
-                    }} />
-                    <Route exact path='/contactus' component={Contact} />
-                    <Route exact path='/aboutus' render={() => <About partners={this.props.partners} /> } />
-                    <Redirect to='/home' />
-                </Switch>
-                <Footer />
-            </div>
-        );
-    }
+  componentWillUnmount() {
+    console.log("componentWillUnmount");
+  }
+
+  shouldComponentUpdate() {
+    return true;
+  }
+
+  render() {
+    console.log("render");
+    const HomePage = () => {
+      return (
+        <Home
+          campsite={
+            this.props.campsites.campsites.filter(
+              (campsite) => campsite.featured
+            )[0]
+          }
+          campsitesLoading={this.props.campsites.isLoading}
+          campsitesErrMess={this.props.campsites.errMess}
+          promotion={
+            this.props.promotions.filter((promotion) => promotion.featured)[0]
+          }
+          partner={this.props.partners.filter((partner) => partner.featured)[0]}
+        />
+      );
+    };
+
+    const CampsiteWithId = ({ match }) => {
+      return (
+        <CampsiteInfo
+          campsite={
+            this.props.campsites.campsites.filter(
+              (campsite) => campsite.id === +match.params.campsiteId
+            )[0]
+          }
+          isLoading={this.props.campsites.isLoading}
+          errMess={this.props.campsites.errMess}
+          comments={this.props.comments.filter(
+            (comment) => comment.campsiteId === +match.params.campsiteId
+          )}
+          addComment={this.props.addComment}
+        />
+      );
+    };
+
+    return (
+      <div>
+        <Header />
+        <Switch>
+          <Route path="/home" component={HomePage} />
+          <Route
+            exact
+            path="/directory"
+            render={() => <Directory campsites={this.props.campsites} />}
+          />
+          <Route
+            path="/directory/:campsiteId"
+            component={CampsiteWithId}
+            // component={(route) => {
+            // // console.log({route})
+            // // const { params } = route
+            // console.log({route})
+            // route.history.goBack();
+            // return CampsiteWithId(route)}
+          />
+          <Route exact path="/contactus" component={Contact} />
+          <Route
+            exact
+            path="/aboutus"
+            render={() => <About partners={this.props.partners} />}
+          />
+          <Redirect to="/home" />
+        </Switch>
+        <Footer />
+      </div>
+    );
+  }
 }
 
-export default withRouter(connect(mapStateToProps)(Main));
+export default connect(mapStateToProps, mapDispatchToProps)(Main);
