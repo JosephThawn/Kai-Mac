@@ -1,30 +1,33 @@
 export const PARTNERS = [
-    {
-        id: 0,
-        name: "Bootstrap Outfitters",
-        image: "/assets/images/bootstrap-logo.png",
-        featured: false,
-        description: "Bootstrap Outfitters supplies you with the gear you need at prices you can't beat."
-    },
-    {
-        id: 1,
-        name: "Git Out Expeditions",
-        image: "/assets/images/git-logo.png",
-        featured: false,
-        description: "Join Git Out Expeditions to explore new horizons with a group of other adventurers!"
-    },
-    {
-        id: 2,
-        name: "Mongo Fly Shop",
-        image: "/assets/images/mongo-logo.png",
-        featured: false,
-        description: "Need a new fishing pole, a tacklebox, or flies of all kinds? Stop by Mongo Fly Shop."
-    },
-    {
-        id: 3,
-        name: "Node Outdoor Apparel",
-        image: "/assets/images/node-logo.png",
-        featured: true,
-        description: "From polar fleeces to swimsuits, hiking boots to waders, a visit to Node will be sure to get you covered."
-    }
-]
+  {
+    id: 0,
+    name: "Zomi InnKuan United States of America",
+    image: "/assets/images/ziusa.png",
+    featured: false,
+    description:
+      "A mission statement is defined as an action-based statement that declares the purpose of an organization and how they serve their customers. This sometimes includes a description of the company, what it does, and its objectives. A mission statement is a short summary of your company's purpose.",
+  },
+  {
+    id: 1,
+    name: "Zomi International Television",
+    image: "/assets/images/zntv.png",
+    featured: false,
+    description:
+      "A mission statement is defined as an action-based statement that declares the purpose of an organization and how they serve their customers. This sometimes includes a description of the company, what it does, and its objectives. A mission statement is a short summary of your company's purpose",
+  },
+  {
+    id: 2,
+    name: "Zomi Innkuan Oklahom",
+    image: "/assets/images/ziok.png",
+    featured: false,
+    description:
+      "A mission statement is defined as an action-based statement that declares the purpose of an organization and how they serve their customers. This sometimes includes a description of the company, what it does, and its objectives. A mission statement is a short summary of your company's purpose",
+  },
+  // {
+  //     id: 3,
+  //     name: "Node Outdoor Apparel",
+  //     image: "/assets/images/node-logo.png",
+  //     featured: true,
+  //     description: "From polar fleeces to swimsuits, hiking boots to waders, a visit to Node will be sure to get you covered."
+  // }
+];

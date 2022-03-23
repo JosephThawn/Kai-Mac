@@ -3,6 +3,8 @@ import { Campsites } from "./campsites";
 import { Comments } from "./comments";
 import { Partners } from "./partners";
 import { Promotions } from "./promotions";
+import { Drinks } from "./drinks";
+import { Entrees } from "./entrees";
 import thunk from "redux-thunk";
 import logger from "redux-logger";
 import { createForms } from "react-redux-form";
@@ -15,6 +17,8 @@ export const ConfigureStore = () => {
       comments: Comments,
       partners: Partners,
       promotions: Promotions,
+      drinks: Drinks,
+      entrees: Entrees,
       ...createForms({
         feedbackForm: InitialFeedback,
       }),

@@ -2,7 +2,10 @@ body {
   font-family: "Open Sans", sans-serif;
 }
 
-h1, h2, h3, .card-body>.card-title {
+h1,
+h2,
+h3,
+.card-body > .card-title {
   font-family: "Lobster", cursive;
 }
 
@@ -12,11 +15,11 @@ h1, h2, h3, .card-body>.card-title {
 }
 
 h2 {
-  color: #3046C5;
+  color: #3046c5;
 }
 
 .card-img-overlay .card-title {
-  color: white;
+  /* color: white; */
   background-color: rgba(0, 0, 0, 0.5);
 }
 
@@ -27,21 +30,36 @@ h2 {
 }
 
 .site-footer {
-  background-image: linear-gradient(#CEC8FF, white);
+  background-image: linear-gradient(#cec8ff, white);
   padding: 20px 0;
 }
 
 .jumbotron {
   margin: 0;
   padding: 30px;
-  background-image: linear-gradient(to right, #5637DD, #3046C5, #60106B);
-  color: white;
+  background-image: rgba(0, 0, 0, 0.466);
+  /* color: white; */
 }
 
 .jumbotron h2 {
-  color: #CEC8FF;
+  color: #cec8ff;
 }
 
 .navbar-dark {
-  background-color: #901CAD;
+  background-color: #433f39;
+}
+
+p1 {
+  font-size: 17px, bold;
+}
+
+.nav-link {
+  border: 0;
+  padding: 12px 15px 12px 0;
+  transition: 0.3s;
+  color: #433f39;
+  border-radius: 0;
+  border-right: 2px solid #e8e7e4;
+  font-weight: 600;
+  font-size: 20px;
 }
